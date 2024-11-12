@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "C8D15A8D-27DC-446D-B1F2-0C6A617CE3F9",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ChinNum.xcodeproj",
+      "identifier" : "D89D87382CE231DC00DE0300",
+      "name" : "ChinNum"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:ChinNum.xcodeproj",
+        "identifier" : "D89D87492CE231E200DE0300",
+        "name" : "ChinNumTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:ChinNum.xcodeproj",
+        "identifier" : "D89D87532CE231E200DE0300",
+        "name" : "ChinNumUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

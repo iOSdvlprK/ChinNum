@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D89025122CE23E6100CF168A /* ChinNum.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ChinNum.xctestplan; sourceTree = "<group>"; };
 		D89D87392CE231DC00DE0300 /* ChinNum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChinNum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89D874A2CE231E200DE0300 /* ChinNumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChinNumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89D87542CE231E200DE0300 /* ChinNumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChinNumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +76,7 @@
 		D89D87302CE231DC00DE0300 = {
 			isa = PBXGroup;
 			children = (
+				D89025122CE23E6100CF168A /* ChinNum.xctestplan */,
 				D89D873B2CE231DC00DE0300 /* ChinNum */,
 				D89D874D2CE231E200DE0300 /* ChinNumTests */,
 				D89D87572CE231E200DE0300 /* ChinNumUITests */,
