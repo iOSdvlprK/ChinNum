@@ -31,11 +31,10 @@ struct GameModel {
         turns += 1
     }
     
-    // TODO: need to implement
     mutating func generateNewProblem() {
         // TODO: implement this part...
         // Create an array of four different random values between 0 and 99
-        alternatives = [6, 33, 5, 10]
+        alternatives = Int.generateUniqueRandomIntegers(count: 4)
         
         // Let the last alternative be the answer
         answer = alternatives[3]
@@ -51,14 +50,7 @@ struct GameModel {
             volume: 0.7,
             turns: 0,
             answer: 10,
-            alternatives: [6, 23, 5, 10]
+            alternatives: Int.generateUniqueRandomIntegers(count: 4)
         )
     }
 }
-/*
- // TODO:
- 1) Implement a function
- func generateUniqueRandomIntegers(count: Int) between 0 and 99
- 
- 2) Create an extension of Int with the same functionality as 1)
- */
