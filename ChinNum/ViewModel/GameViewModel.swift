@@ -12,7 +12,7 @@ import AVFoundation
 @Observable
 class GameViewModel {
     var gameModel: GameModel = .defaultGameModel
-    var audioPlayer: AVAudioPlayer?
+    private var audioPlayer: AVAudioPlayer?
     
     func randomExpressionOfJoy() {
         playSound(name: ["awesome", "bell", "correct", "whoop", "yes"].randomElement() ?? "whoop")
@@ -22,16 +22,42 @@ class GameViewModel {
         playSound(name: ["OhNo", "incorrectAnswer", "weak"].randomElement() ?? "incorrectAnswer")
     }
     
+    // playNumber receives a number between 0 and 99 and plays the sound.
+    // If the number is outside that range, then play "bell"
     func playNumber(num: Int) {
-        // TODO: playNumber
+        switch num {
+        case 0...10:
+            playDigit(digit: num)
+        case 11...19:
+            playDigit(digit: 10)
+            playDigit(digit: num % 10)
+        case 20...99:
+            let digit = num % 10
+            let tenths = num / 10 // integer division
+            playDigit(digit: tenths)
+            playDigit(digit: 10)
+            if digit != 0 {
+                playDigit(digit: digit)
+            }
+        default:
+            playSound(name: "bell")
+        }
     }
     
-    private func playDigit(num: Int) {
-        // TODO: playDigit
+    private func playDigit(digit: Int) {
+        playSound(name: digitToName(digit: digit) ?? "bell")
     }
     
     private func digitToName(digit: Int) -> String? {
-        return nil  // TODO: digitToName
+        let digitNames = [
+            "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"
+        ]
+        
+        if digit >= 0 && digit <= 10 {
+            return digitNames[digit]
+        }
+        
+        return nil
     }
     
     // Play sounds and digits

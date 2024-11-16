@@ -26,6 +26,19 @@ struct MainView: View {
                 gVM.incorrectSound()
             })
             .padding()
+            
+            Button("7", action: {
+                gVM.playNumber(num: 7)
+            })
+            .padding()
+            Button("30", action: {
+                gVM.playNumber(num: 30)
+            })
+            .padding()
+            Button("74", action: {
+                gVM.playNumber(num: 74)
+            })
+            .padding()
         }
         .padding()
     }
