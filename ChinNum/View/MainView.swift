@@ -23,7 +23,23 @@ struct MainView: View {
                 Toggle(showPinyin ? "Hide Pinyin" : "Show Pinyin", isOn: $showPinyin.animation())
                     .padding(.vertical)
                 
-                Spacer()
+                if let chineseNum = Chinese.num99ToChinese(num: gVM.gameModel.answer) {
+                    Spacer()
+                    
+                    Text(chineseNum.chinese)
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                    
+                    Text(chineseNum.pinyin)
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                        .opacity(showPinyin ? 1 : 0)
+                }
+                
+                NumberOptionsView(numbers: gVM.gameModel.alternatives, answer: gVM.gameModel.answer)
+                    .onChange(of: gVM.gameModel.turns) { oldValue, newValue in
+                        gVM.gameModel.generateNewProblem()
+                    }
             }
             .padding()
         }

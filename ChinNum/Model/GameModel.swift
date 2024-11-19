@@ -50,7 +50,7 @@ struct GameModel {
             volume: 0.7,
             turns: 0,
             answer: 10,
-            alternatives: Int.generateUniqueRandomIntegers(count: 4)
+            alternatives: [42, 13, 7, 10].shuffled()
         )
     }
 }
