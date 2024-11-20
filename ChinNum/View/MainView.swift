@@ -13,6 +13,12 @@ struct MainView: View {
     @State private var showSettingsView: Bool = false
     @State private var showPinyin: Bool = true
     
+    @State private var done: Bool = false
+    
+    var gameOver: Bool {
+        gVM.gameModel.gameWon
+    }
+    
     var body: some View {
         ZStack {
             GearIconView(showSettingsView: $showSettingsView)
@@ -42,6 +48,12 @@ struct MainView: View {
                     }
             }
             .padding()
+        }
+        .fullScreenCover(isPresented: $done) {
+            GameOverView(color: .green.opacity(0.8))
+        }
+        .onChange(of: gameOver) { oldValue, newValue in
+            done = gameOver
         }
     }
 }

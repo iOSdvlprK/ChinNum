@@ -31,6 +31,11 @@ struct GameModel {
         turns += 1
     }
     
+    mutating func resetGame() {
+        score = 0
+        turns = 0
+    }
+    
     mutating func generateNewProblem() {
         // TODO: implement this part...
         // Create an array of four different random values between 0 and 99
