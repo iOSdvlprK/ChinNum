@@ -31,11 +31,6 @@ struct GameModel {
         turns += 1
     }
     
-    mutating func resetGame() {
-        score = 0
-        turns = 0
-    }
-    
     mutating func generateNewProblem() {
         // TODO: implement this part...
         // Create an array of four different random values between 0 and 99
@@ -46,6 +41,17 @@ struct GameModel {
         
         // Shuffle the alternatives so that the solution appears in a different position
         alternatives = alternatives.shuffled()
+    }
+    
+    mutating func resetGame() {
+        self = GameModel(
+            score: 0,
+            maxTurns: 5,
+            volume: self.volume,
+            turns: 0,
+            answer: 10,
+            alternatives: [42, 13, 7, 10].shuffled()
+        )
     }
     
     static var defaultGameModel: GameModel {
