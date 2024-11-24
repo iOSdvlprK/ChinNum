@@ -18,6 +18,16 @@ struct SplashScreenView: View {
     
     var vm = ProverbViewModel()
     
+    var chinese: String {
+        "chinese"
+    }
+    var pinyin: String {
+        "pinyin"
+    }
+    var english: String {
+        "english"
+    }
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -33,29 +43,31 @@ struct SplashScreenView: View {
                     .opacity(opacity)
                 
                 VStack {
-                    VStack(spacing: spacing) {
-                        Text("Line 1")
-                            .foregroundStyle(.red)
-                        Text("Line 2")
-                            .foregroundStyle(.yellow)
-                        Text("Line 3")
-                            .foregroundStyle(.red)
+                    VeryCoolTextView(spacing: spacing, text1: chinese, text2: pinyin, text3: english, scale: scale, angle: angle, opacity: opacity)
+                    
+                    if moveUp {
+                        Spacer()
                     }
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 25)
-                            .fill(LinearGradient(colors: [.black, .gray], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            .opacity(opacity)
-                    )
-                    .font(.title)
-                    .fontWeight(.semibold)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .scaleEffect(scale)
-                    .rotation3DEffect(
-                        Angle(degrees: angle),
-                        axis: (x: 1.0, y: 0.0, z: 0.0)
-                    )
+                }
+                
+                VStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        withAnimation {
+                            isPresented.toggle()
+                        }
+                    }, label: {
+                        Image("friend")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 75)
+                            .clipShape(Capsule())
+                            .overlay {
+                                Capsule()
+                                    .stroke(Color.red, lineWidth: 1)
+                            }
+                    })
                 }
             }
         }
