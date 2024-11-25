@@ -11,6 +11,7 @@ struct SplashScreenView: View {
     @Binding var isPresented: Bool
     
     @State private var opacity = 0.0
+    @State private var textOpacity = 0.1
     @State private var scale = CGSize(width: 0.5, height: 0.5)
     @State private var moveUp = false
     @State private var angle = 45.0
@@ -19,18 +20,19 @@ struct SplashScreenView: View {
     var vm = ProverbViewModel()
     
     var chinese: String {
-        "chinese"
+        vm.proverbModel.proverb
     }
     var pinyin: String {
-        "pinyin"
+        vm.proverbModel.pinyin
     }
     var english: String {
-        "english"
+        vm.proverbModel.translation
     }
     
     var body: some View {
         GeometryReader { geo in
             ZStack {
+                // background
                 Color
                     .black
                     .ignoresSafeArea()
@@ -42,6 +44,7 @@ struct SplashScreenView: View {
                     .frame(width: geo.size.width, height: geo.size.height)
                     .opacity(opacity)
                 
+                // the text
                 VStack {
                     VeryCoolTextView(spacing: spacing, text1: chinese, text2: pinyin, text3: english, scale: scale, angle: angle, opacity: opacity)
                     
@@ -49,7 +52,9 @@ struct SplashScreenView: View {
                         Spacer()
                     }
                 }
+                .opacity(textOpacity)
                 
+                // button
                 VStack {
                     Spacer()
                     
@@ -68,6 +73,23 @@ struct SplashScreenView: View {
                                     .stroke(Color.red, lineWidth: 1)
                             }
                     })
+                }
+            }
+        }
+        .onAppear {
+            vm.getRandomQuote()
+            
+            withAnimation(.easeInOut(duration: 2.5)) {
+                opacity = 0.8
+                textOpacity = 0.8
+                scale = CGSize(width: 1, height: 1)
+                angle = 0
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation(.easeInOut(duration: 2)) {
+                    textOpacity = 1.0
+                    moveUp = true
+                    spacing = 30
                 }
             }
         }
