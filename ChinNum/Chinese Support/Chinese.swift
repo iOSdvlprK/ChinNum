@@ -7,8 +7,8 @@
 
 import Foundation
 
-class Chinese {
-    static func num99ToChinese(num: Int) -> (chinese: String, pinyin: String)? {
+extension Int {
+    func num99ToChinese() -> (chinese: String, pinyin: String)? {
         let chineseDigitsWithPinyin: [(chinese: String, pinyin: String)] = [
             ("零", "líng"),
             ("一", "yī"),
@@ -40,16 +40,16 @@ class Chinese {
         var chineseResult: String
         var pinyinResult: String
         
-        switch num {
+        switch self {
         case 0...10:
-            chineseResult = chineseDigitsWithPinyin[num].chinese
-            pinyinResult = chineseDigitsWithPinyin[num].pinyin
+            chineseResult = chineseDigitsWithPinyin[self].chinese
+            pinyinResult = chineseDigitsWithPinyin[self].pinyin
         case 11...19:
-            chineseResult = "十\(chineseDigitsWithPinyin[num%10].chinese)"
-            pinyinResult = "shí \(chineseDigitsWithPinyin[num%10].pinyin)"
+            chineseResult = "十\(chineseDigitsWithPinyin[self%10].chinese)"
+            pinyinResult = "shí \(chineseDigitsWithPinyin[self%10].pinyin)"
         case 20...99:
-            let tenths = num / 10
-            let digit = num % 10
+            let tenths = self / 10
+            let digit = self % 10
             chineseResult = "\(chineseDigitsWithPinyin[tenths].chinese)十\(chineseDigitsWithPinyinEmptyZero[digit].chinese)"
             pinyinResult = "\(chineseDigitsWithPinyin[tenths].pinyin) shí \(chineseDigitsWithPinyinEmptyZero[digit].pinyin)"
         default:
