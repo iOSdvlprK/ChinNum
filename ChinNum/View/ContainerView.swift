@@ -14,10 +14,14 @@ struct ContainerView: View {
     var body: some View {
         if splashScreenIsPresented {
             SplashScreenView(isPresented: $splashScreenIsPresented)
+                .disabled(!splashScreenIsPresented)
+        } else {
+            MainView()
         }
     }
 }
 
 #Preview {
     ContainerView()
+        .environment(GameViewModel())
 }

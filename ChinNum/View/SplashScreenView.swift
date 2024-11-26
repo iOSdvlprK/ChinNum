@@ -92,6 +92,11 @@ struct SplashScreenView: View {
                     spacing = 30
                 }
             }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                withAnimation(.easeInOut(duration: 2)) {
+                    isPresented = false
+                }
+            }
         }
     }
 }

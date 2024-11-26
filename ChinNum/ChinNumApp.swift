@@ -13,7 +13,7 @@ struct ChinNumApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            ContainerView()
                 .environment(gVM)
         }
     }
